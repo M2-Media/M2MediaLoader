@@ -1,5 +1,5 @@
 PODS:
-  - MediaLoader (0.0.1)
+  - MediaLoader (0.1.0)
   - Nimble (9.0.0-rc.3)
   - Quick (3.0.0)
 
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MediaLoader: 098fcde086a7c015253caec2d8722489d0dcb35e
+  MediaLoader: 722dcc7574717530d332765f87a69fbb2e485713
   Nimble: 1b5fa99320d0d87ed72bb0add38dc696aa77f556
   Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
 
