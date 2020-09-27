@@ -1,0 +1,6 @@
+framework module MediaLoader {
+  umbrella header "MediaLoader-umbrella.h"
+
+  export *
+  module * { export * }
+}

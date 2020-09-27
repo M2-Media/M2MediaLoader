@@ -1,0 +1,27 @@
+PODS:
+  - MediaLoader (0.0.1)
+  - Nimble (9.0.0-rc.3)
+  - Quick (3.0.0)
+
+DEPENDENCIES:
+  - MediaLoader (from `../`)
+  - Nimble (~> 9.0.0-rc.3)
+  - Quick (~> 3.0.0)
+
+SPEC REPOS:
+  trunk:
+    - Nimble
+    - Quick
+
+EXTERNAL SOURCES:
+  MediaLoader:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MediaLoader: 098fcde086a7c015253caec2d8722489d0dcb35e
+  Nimble: 1b5fa99320d0d87ed72bb0add38dc696aa77f556
+  Quick: 6d9559f40647bc4d510103842ef2fdd882d753e2
+
+PODFILE CHECKSUM: acfd6e1a809099f60205511d577452ab602d4e75
+
+COCOAPODS: 1.9.3

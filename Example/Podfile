@@ -1,12 +1,14 @@
+platform :ios, '12.0'
 use_frameworks!
+inhibit_all_warnings!
 
-target 'PhotoLoader_Example' do
-  pod 'PhotoLoader', :path => '../'
+target 'MediaLoader_Example' do
+  pod 'MediaLoader', :path => '../'
 
-  target 'PhotoLoader_Tests' do
+  target 'MediaLoader_Tests' do
     inherit! :search_paths
 
-    pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0.2'
+    pod 'Quick', '~> 3.0.0'
+    pod 'Nimble', '~> 9.0.0-rc.3'
   end
 end

@@ -20,6 +20,8 @@ it, simply add the following line to your Podfile:
 pod 'MediaLoader'
 ```
 
+The app's Info.plist must contain an NSPhotoLibraryUsageDescription key with a string value explaining to the user how the app uses this data.
+
 ## Author
 
 MatiasSF9, matiasrfer@gmail.com

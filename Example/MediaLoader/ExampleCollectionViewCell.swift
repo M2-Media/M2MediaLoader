@@ -1,0 +1,24 @@
+//
+//  ExampleCollectionViewCell.swift
+//  MediaLoader_Example
+//
+//  Created by Matias Fernandez on 4/14/19.
+//  Copyright © 2019 CocoaPods. All rights reserved.
+//
+
+import UIKit
+import Photos
+
+class ExampleCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var imageView: UIImageView!
+    var representedAssetIdentifier: String!
+    
+    public func setImage(_ img: PHAsset) {
+        imageView.setImage(withAsset: img)
+    }
+    
+    override func prepareForReuse() {
+        imageView.image = nil
+    }
+    
+}

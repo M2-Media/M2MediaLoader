@@ -2,7 +2,7 @@
 
 import Quick
 import Nimble
-import PhotoLoader
+import MediaLoader
 
 class TableOfContentsSpec: QuickSpec {
     override func spec() {
