@@ -47,7 +47,7 @@ public extension M2MediaLoader {
      
      - Returns: (min: Float, max: Float) result tuple
      */
-    public func sampleDisparity(disparityImage: CIImage, rect: CGRect) -> (min: Float, max: Float){
+    func sampleDisparity(disparityImage: CIImage, rect: CGRect) -> (min: Float, max: Float){
         //Apply filter with the Sample Rect from the user's tap.
         let minMaxImage = disparityImage.clampedToExtent().applyingFilter("CIAreaMinMaxRed", parameters: [kCIInputExtentKey : CIVector(cgRect: rect)])
         //Four byte buffer to store single pixel value
@@ -67,7 +67,7 @@ public extension M2MediaLoader {
     /**
      
      */
-    public func hasDepthInformation(info: [AnyHashable : Any]) -> Bool {
+    func hasDepthInformation(info: [AnyHashable : Any]) -> Bool {
         guard let content = info[kCGImagePropertyFileContentsDictionary] as? [AnyHashable : Any] else {
             return false
         }
