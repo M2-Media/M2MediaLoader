@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-import MediaLoader
+import M2MediaLoader
 
 
 class ExampleDetailViewController: UIViewController {
@@ -23,7 +23,7 @@ class ExampleDetailViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        MediaLoader.shared().getAsset(asset: self.asset, forSize: imageView.frame.size) { [self] (image, info) in
+        M2MediaLoader.shared().getAsset(asset: self.asset, forSize: imageView.frame.size) { [self] (image, info) in
             self.imageView.image = image
         }
     }

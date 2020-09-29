@@ -20,7 +20,7 @@ import AVFoundation
 // 5 - Generate background image
 // 6 - Apply blend between original and background using mask
 
-public extension MediaLoader {
+public extension M2MediaLoader {
    
     //MARK: CIIMage Depth Image
     /**
@@ -47,7 +47,7 @@ public extension MediaLoader {
      
      - Returns: (min: Float, max: Float) result tuple
      */
-    func sampleDisparity(disparityImage: CIImage, rect: CGRect) -> (min: Float, max: Float){
+    public func sampleDisparity(disparityImage: CIImage, rect: CGRect) -> (min: Float, max: Float){
         //Apply filter with the Sample Rect from the user's tap.
         let minMaxImage = disparityImage.clampedToExtent().applyingFilter("CIAreaMinMaxRed", parameters: [kCIInputExtentKey : CIVector(cgRect: rect)])
         //Four byte buffer to store single pixel value
@@ -62,10 +62,44 @@ public extension MediaLoader {
         return (min: Float(pixel[0]) / 255.0, max: Float(pixel[1]) / 255.0)
     }
     
+    //Awful code. Fuck CFFoundation!!
+    @available(iOS 11.0, *)
+    /**
+     
+     */
+    public func hasDepthInformation(info: [AnyHashable : Any]) -> Bool {
+        guard let content = info[kCGImagePropertyFileContentsDictionary] as? [AnyHashable : Any] else {
+            return false
+        }
+        let count = content[kCGImagePropertyImageCount] as? Int
+        if count! < 1 {
+            return false
+        }
+        guard let images = content[kCGImagePropertyImages] as? [Any] else {
+            return false
+        }
+        
+        guard let image = images[0] as? [AnyHashable: Any] else {
+            return false
+        }
+        guard let auxilaryData = image[kCGImagePropertyAuxiliaryData] as? [Any] else {
+            return false
+        }
+        guard let aux = auxilaryData[0] as? [AnyHashable: Any] else {
+            return false
+        }
+        let dataType: CFString = aux[kCGImagePropertyAuxiliaryDataType] as! CFString
+        if dataType == kCGImageAuxiliaryDataTypeDisparity {
+            NSLog("Disparity data found!")
+            return true
+        }
+        return false
+    }
+    
 }
 
 //MARK: Private Methods
-extension MediaLoader {
+extension M2MediaLoader {
 
     //Convert Depth Image to Disparity Image
     fileprivate func getDisparityFromDepthImage(depthImage: CIImage) -> CIImage? {

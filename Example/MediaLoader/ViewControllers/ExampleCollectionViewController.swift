@@ -8,29 +8,29 @@
 
 import UIKit
 import Photos
-import MediaLoader
+import M2MediaLoader
 
 private let reuseIdentifier = "identifier"
 
 class ExampleCollectionViewController: UICollectionViewController {
 
     var result: PHFetchResult<PHAsset>!
-    var currentOption: MediaType!
+    var currentOption: M2MediaType!
     var selected: PHAsset?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func load(_ option: MediaType) {
+    func load(_ option: M2MediaType) {
         currentOption = option
-        result = MediaLoader.shared().getResources(self, mediaType: option)
+        result = M2MediaLoader.shared().getResources(self, mediaType: option)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if result == nil {
-            result = MediaLoader.shared().getResoures(self, type: currentOption.type, subtype: currentOption.subtype)
+            result = M2MediaLoader.shared().getResoures(self, type: currentOption.type, subtype: currentOption.subtype)
         }
         collectionView.reloadData()
     }
@@ -59,7 +59,7 @@ extension ExampleCollectionViewController {
         // Request an image for the asset from the PHCachingImageManager.
         
         cell.representedAssetIdentifier = asset.localIdentifier
-        MediaLoader.shared().getAsset(asset: asset,
+        M2MediaLoader.shared().getAsset(asset: asset,
                                       forSize: cell.imageView.frame.size) { (image, info) in
             // The cell may have been recycled by the time this handler gets called;
             // set the cell's thumbnail image only if it's still showing the same asset.

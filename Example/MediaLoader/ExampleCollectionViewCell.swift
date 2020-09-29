@@ -13,9 +13,6 @@ class ExampleCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     var representedAssetIdentifier: String!
     
-    public func setImage(_ img: PHAsset) {
-        imageView.setImage(withAsset: img)
-    }
     
     override func prepareForReuse() {
         imageView.image = nil

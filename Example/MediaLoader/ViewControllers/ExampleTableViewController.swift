@@ -7,18 +7,19 @@
 //
 
 import UIKit
-import MediaLoader
+import M2MediaLoader
 
 class ExampleTableViewController: UITableViewController {
 
-    var options = [[MediaType]]()
-    var selected: MediaType?
+    var options = [[M2MediaType]]()
+    var selected: M2MediaType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         //Image
-        var images = [MediaType]()
+        var images = [M2MediaType]()
+        images.append(.ALL_PHOTOS)
         images.append(.PANORAMA)
         images.append(.HDR_PHOTO)
         images.append(.SCREENSHOT)
@@ -27,14 +28,16 @@ class ExampleTableViewController: UITableViewController {
         options.append(images)
         
         //Video
-        var video = [MediaType]()
+        var video = [M2MediaType]()
+        video.append(.ALL_VIDEOS)
         video.append(.VIDEO_STREAMED)
         video.append(.VIDEO_HFR)
         video.append(.VIDEO_TIMELAPSE)
         options.append(video)
         
         //Audio
-        var audio = [MediaType]()
+        var audio = [M2MediaType]()
+        audio.append(.ALL_AUDIOS)
         audio.append(.AUDIO)
         options.append(audio)
         

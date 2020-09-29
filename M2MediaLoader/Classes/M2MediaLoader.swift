@@ -14,25 +14,25 @@ import CoreImage
 import Foundation
 import PhotosUI
 
-struct ImageData {
-    var data: Data?
-    var info: [AnyHashable: Any]?
-    var orientation: UIImage.Orientation?
+public struct ImageData {
+    public var data: Data?
+    public var info: [AnyHashable: Any]?
+    public var orientation: UIImage.Orientation?
 }
 
-public class MediaLoader {
+public class M2MediaLoader {
     
-    static let instance = MediaLoader()
+    static let instance = M2MediaLoader()
     
     fileprivate var manager = PHCachingImageManager()
     
-    public static func shared() -> MediaLoader {
+    public static func shared() -> M2MediaLoader {
         return instance
     }
     
     
     //MARK - Photo Library
-    public func getResources(_ delegate: PHPhotoLibraryChangeObserver, mediaType: MediaType) -> PHFetchResult<PHAsset> {
+    public func getResources(_ delegate: PHPhotoLibraryChangeObserver, mediaType: M2MediaType) -> PHFetchResult<PHAsset> {
         return getResoures(delegate, type: mediaType.type, subtype: mediaType.subtype)
     }
     
@@ -44,7 +44,9 @@ public class MediaLoader {
         
         let fetchOptions = PHFetchOptions()
         //TODO: offer sorting options & combine asset types & subtypes
-        fetchOptions.predicate = NSPredicate(format: "((mediaSubtype & %d) != 0)", subtype.rawValue)
+        if subtype.rawValue != 0 {
+            fetchOptions.predicate = NSPredicate(format: "((mediaSubtype & %d) != 0)", subtype.rawValue)
+        }
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         return PHAsset.fetchAssets(with: type, options: fetchOptions)
     }
@@ -66,14 +68,14 @@ public class MediaLoader {
                              options: options, resultHandler: resultHandler)
     }
     
-    func stopCaching() {
+    public func stopCaching() {
         manager.stopCachingImagesForAllAssets()
     }
 }
 
 
 //MARK: Editing retrieval
-extension MediaLoader {
+extension M2MediaLoader {
     
     //Gets asset enabled for editing
     func getAssetForEdition(asset: PHAsset) {
@@ -85,7 +87,7 @@ extension MediaLoader {
     }
     
     //Gets image data from PHAsset
-    func getImageData(asset: PHAsset, resultHandler: @escaping (ImageData) -> Swift.Void) {
+    public func getImageData(asset: PHAsset, resultHandler: @escaping (ImageData) -> Swift.Void) {
         let options = PHImageRequestOptions()
         options.isSynchronous = true
         options.version = PHImageRequestOptionsVersion.original
@@ -102,37 +104,6 @@ extension MediaLoader {
             resultHandler(ImageData(data: imageData, info: properties, orientation: orientation))
             
         }
-    }
-    
-    //Awful code. Fuck CFFoundation!!
-    @available(iOS 11.0, *)
-    func hasDepthInformation(info: [AnyHashable : Any]) -> Bool {
-        guard let content = info[kCGImagePropertyFileContentsDictionary] as? [AnyHashable : Any] else {
-            return false
-        }
-        let count = content[kCGImagePropertyImageCount] as? Int
-        if count! < 1 {
-            return false
-        }
-        guard let images = content[kCGImagePropertyImages] as? [Any] else {
-            return false
-        }
-        
-        guard let image = images[0] as? [AnyHashable: Any] else {
-            return false
-        }
-        guard let auxilaryData = image[kCGImagePropertyAuxiliaryData] as? [Any] else {
-            return false
-        }
-        guard let aux = auxilaryData[0] as? [AnyHashable: Any] else {
-            return false
-        }
-        let dataType: CFString = aux[kCGImagePropertyAuxiliaryDataType] as! CFString
-        if dataType == kCGImageAuxiliaryDataTypeDisparity {
-            NSLog("Disparity data found!")
-            return true
-        }
-        return false
     }
     
     //Get images properties
@@ -152,7 +123,5 @@ extension MediaLoader {
     func saveEditedAsset(input: PHContentEditingInput, jpegData: Data, adjustmentData: PHAdjustmentData) {
         //TODO: Save image
     }
-    
-    
     
 }

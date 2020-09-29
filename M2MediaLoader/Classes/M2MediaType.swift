@@ -9,21 +9,26 @@ import Foundation
 import Photos
 
 
-public enum MediaType {
+public enum M2MediaType {
     
+    case ALL_PHOTOS
     case PANORAMA
     case HDR_PHOTO
     case SCREENSHOT
     case LIVE_IMAGE
     case DEPTH_IMAGE
+    case ALL_VIDEOS
     case VIDEO_STREAMED
     case VIDEO_HFR
     case VIDEO_TIMELAPSE
+    case ALL_AUDIOS
     case AUDIO
     
     
     public var name: String {
         switch self {
+            case .ALL_PHOTOS:
+                return "All Photos"
             case .PANORAMA:
                 return "Panoramas"
             case .HDR_PHOTO:
@@ -34,12 +39,16 @@ public enum MediaType {
                 return "Live Image"
             case .DEPTH_IMAGE:
                 return "Image w/Depth"
+            case .ALL_VIDEOS:
+                return "All Video"
             case .VIDEO_STREAMED:
                 return "Video Streamed"
             case .VIDEO_HFR:
                 return "Video HFR"
             case .VIDEO_TIMELAPSE:
                 return "Video Timelapse"
+            case .ALL_AUDIOS:
+                return "All Audio"
             case .AUDIO:
                 return "Audio"
         }
@@ -47,11 +56,11 @@ public enum MediaType {
     
     public var type: PHAssetMediaType {
         switch self {
-            case .PANORAMA, .HDR_PHOTO, .SCREENSHOT, .LIVE_IMAGE, .DEPTH_IMAGE:
+        case .ALL_PHOTOS, .PANORAMA, .HDR_PHOTO, .SCREENSHOT, .LIVE_IMAGE, .DEPTH_IMAGE:
                 return PHAssetMediaType.image
-            case .VIDEO_STREAMED,.VIDEO_HFR, .VIDEO_TIMELAPSE:
+        case .ALL_VIDEOS, .VIDEO_STREAMED,.VIDEO_HFR, .VIDEO_TIMELAPSE:
                 return PHAssetMediaType.video
-            case .AUDIO:
+        case .ALL_AUDIOS, .AUDIO:
                 return PHAssetMediaType.audio
         }
     }
@@ -76,6 +85,8 @@ public enum MediaType {
                 return PHAssetMediaSubtype.videoTimelapse
             case .AUDIO:
                 return PHAssetMediaSubtype.videoTimelapse
+            case .ALL_PHOTOS, .ALL_VIDEOS, .ALL_AUDIOS:
+                return PHAssetMediaSubtype.init()
         }
     }
 }

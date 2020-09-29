@@ -52,7 +52,7 @@
 		D269F1BD25211D34001EA209 /* ExampleDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleDetailViewController.swift; sourceTree = "<group>"; };
 		D29BC39325213D9B007ABBE0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		D96FC11D38A839FDAB94A8A0 /* Pods_MediaLoader_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MediaLoader_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E154A77F32D16F30F10FCCC9 /* MediaLoader.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MediaLoader.podspec; path = ../MediaLoader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E154A77F32D16F30F10FCCC9 /* M2MediaLoader.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = M2MediaLoader.podspec; path = ../M2MediaLoader.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E41D115CCFD8CCA5D79ED043 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		EF5110AB71A619260B21CAC9 /* Pods-MediaLoader_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MediaLoader_Tests.debug.xcconfig"; path = "Target Support Files/Pods-MediaLoader_Tests/Pods-MediaLoader_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +160,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				E154A77F32D16F30F10FCCC9 /* MediaLoader.podspec */,
+				E154A77F32D16F30F10FCCC9 /* M2MediaLoader.podspec */,
 				92C302070953C5EB7CBA7055 /* README.md */,
 				E41D115CCFD8CCA5D79ED043 /* LICENSE */,
 			);
@@ -302,11 +302,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MediaLoader_Example/Pods-MediaLoader_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MediaLoader/MediaLoader.framework",
+				"${BUILT_PRODUCTS_DIR}/M2MediaLoader/M2MediaLoader.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MediaLoader.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M2MediaLoader.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
